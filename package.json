@@ -1,0 +1,20 @@
+{
+  "name": "discord",
+  "version": "1.0.0",
+  "description": "Discord bot development",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.mjs"
+  },
+  "author": "Karsten",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "wokcommands": "^1.5.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
+  },
+  "type": "commonjs"
+}
