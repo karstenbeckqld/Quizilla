@@ -1,10 +1,8 @@
-import DiscordJS, {Intents} from 'discord.js';
-import dotenv from 'dotenv';
-import WOKCommands from 'wokcommands';
-import path from 'path';
-import {fileURLToPath} from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const DiscordJS = require('discord.js');
+const dotenv = require('dotenv');
+const WOKCommands = require('wokcommands');
+const path = require('path');
+const {Intents} = require("discord.js");
 dotenv.config();
 
 
