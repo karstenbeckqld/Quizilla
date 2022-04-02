@@ -1,26 +1,30 @@
-const DiscordJS = require('discord.js');
-const dotenv = require('dotenv');
-const WOKCommands = require('wokcommands');
-const path = require('path');
-const {Intents} = require("discord.js");
+const dotenv = require("dotenv");
+const Client = require("./commandHandler.js");
+
 dotenv.config();
 
+const client = Client();
 
-const client = new DiscordJS.Client({
-    intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.DIRECT_MESSAGE_REACTIONS
-    ],
+client.on("ready", () => {
+    console.log("The bot is ready");
 });
 
-client.on('ready', () => {
-    console.log('KaliumPermanganat is ready');
-    new WOKCommands(client, {
-        // Name of folder that holds command files
-        commandsDir: path.join(__dirname, 'commands'),
-        testServers: ['955910199456170085'],
-    })
+client.on("interactionCreate", async (interaction) => {
+    if (!interaction.isCommand()) return;
+
+    const command = client.commands.get(interaction.commandName);
+
+    if (!command) return;
+
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        await interaction.reply({
+            content: "There was an error while executing this command!",
+            ephemeral: true,
+        });
+    }
 });
 
 client.login(process.env.TOKEN);

@@ -1,5 +1,4 @@
 const DiscordJS = require('discord.js');
-//const {options} = require("./add");
 
 module.exports = {
     category: 'Add',
@@ -32,5 +31,6 @@ module.exports = {
             });
         }
     },
+
 };
 
