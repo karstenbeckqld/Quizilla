@@ -1,3 +1,4 @@
+const DiscordJS = require('discord.js');
 const dotenv = require("dotenv");
 const Client = require("./commandHandler.js");
 

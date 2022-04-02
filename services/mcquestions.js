@@ -47,17 +47,17 @@ module.exports = async function mcquestions(interaction) {
                 .setLabel('D')
                 .setStyle('SECONDARY')
         )
-    await interaction.deferReply({
-        content: `${question}\n 
-            A: ${answers[0]}\n 
-            B: ${answers[1]}\n 
-            C: ${answers[2]}\n 
+    await interaction.reply({
+        content: `${question}\n
+            A: ${answers[0]}\n
+            B: ${answers[1]}\n
+            C: ${answers[2]}\n
             D: ${answers[3]}\n
             Choose your answer:\n`,
         components: [row],
     });
 
-    const filter = (btnInt) => {
+   /* const filter = (btnInt) => {
         return interaction.user.id === btnInt.user.id;
     };
 
@@ -79,14 +79,10 @@ module.exports = async function mcquestions(interaction) {
             chosenAnswer = click.customId;
             console.log(chosenAnswer, correct);
         })
-    });
+    });*/
 
-    if (chosenAnswer === correct) {
-        totalPoints += points;
-        console.log('Your answer was correct, points balance: ' + totalPoints);
-    } else {
-        console.log('Incorrect answer, no points awarded.');
-    }
+    console.log('Incorrect answer, no points awarded.');
+
 }
 
 
