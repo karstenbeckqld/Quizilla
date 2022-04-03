@@ -1,4 +1,4 @@
-var questions = require('../data/questions.js');
+const questions = require('../data/questions.js');
 const {MessageActionRow, MessageButton, Interaction, User, MessageEmbed} = require("discord.js");
 const buttons = require('./displayButtons.js');
 
@@ -19,14 +19,12 @@ module.exports = async function mcquestions(channel) {
     let buttonRow = buttons(answers);
 
     const displayQuestions = new MessageEmbed()
-        .setColor('#52d3bb')
+        .setColor('#52d9c1')
         .setTitle(`${question}`)
-        .addFields([
-            {name: 'A: ', value: `${answers[0]}`},
-            {name: 'B: ', value: `${answers[1]}`},
-            {name: 'C: ', value: `${answers[2]}`},
-            {name: 'D: ', value: `${answers[3]}`},
-        ])
+        .setDescription(`A:  ${answers[0]} \n 
+        B:  ${answers[1]} \n
+        C:  ${answers[2]} \n
+        D:  ${answers[3]}`)
 
 
     channel.send({
