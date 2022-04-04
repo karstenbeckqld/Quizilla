@@ -16,7 +16,7 @@ let questions = {
                     question:
                         'Which Australian prime minister was preceded and succeeded by Kevin Rudd?',
                     answers: [
-                        'Scott morrison',
+                        'Scott Morrison',
                         'Tony Abbott',
                         'Julia Gillard',
                         'John Howard',

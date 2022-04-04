@@ -18,7 +18,7 @@ module.exports = {
 
             await interaction.reply(
                 `${interaction.user.username}, we are creating your trivia game now!`,
-                MCQuestions(interaction.channel),
+                await MCQuestions(interaction.channel),
             );
 
 

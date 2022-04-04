@@ -9,22 +9,24 @@ function getRandomNumber(myMin, myMax) {
 
 module.exports = async function mcquestions(channel) {
     console.log('MCQuestions have started.');
+    let chosenAnswer = '';
 
     // Declare variable to hold random number for questions
     let randomIndex = getRandomNumber(1, 3);
 
     // Create question object
-    let {question, answers, correct, points} = questions.theme[0].history[randomIndex];
+    let {question, answers, correct} = questions.theme[0].history[randomIndex];
 
     let buttonRow = buttons(answers);
 
     const displayQuestions = new MessageEmbed()
         .setColor('#52d9c1')
         .setTitle(`${question}`)
-        .setDescription(`A:  ${answers[0]} \n 
-        B:  ${answers[1]} \n
-        C:  ${answers[2]} \n
-        D:  ${answers[3]}`)
+        .setDescription(
+            `A:  ${answers[0]} \n 
+             B:  ${answers[1]} \n
+             C:  ${answers[2]} \n
+             D:  ${answers[3]}`)
 
 
     channel.send({
@@ -33,30 +35,35 @@ module.exports = async function mcquestions(channel) {
     })
 
 
-   const filter = (btnInt) => {
-         return btnInt.user.id;
-     };
+    const filter = (btnInt) => {
+        return btnInt.user.id;
+    };
 
-     const collector = channel.createMessageComponentCollector({
-         filter,
-         max: 1,
-         time: 1000 * 30,
-     });
+    const collector = channel.createMessageComponentCollector({
+        filter,
+        max: 1,
+        time: 1000 * 30,
+    });
 
-     collector.on('collect', (ButtonInteraction) => {
-         ButtonInteraction.reply({
-             content: `You've chosen ${ButtonInteraction.customId}`,
-         })
-     });
+    collector.on('collect', (ButtonInteraction) => {
+        ButtonInteraction.reply({
+            content: `You've chosen ${ButtonInteraction.customId}`,
+        })
+    });
 
-     collector.on('end', (collection) => {
-         collection.forEach((click) => {
-             let userID = click.user.id;
-             let chosenAnswer = click.customId;
-             console.log(chosenAnswer, correct);
-         })
-     });
+    collector.on('end', (collection) => {
+        collection.forEach((click) => {
+            let userID = click.user.id;
+            chosenAnswer = click.customId;
+            console.log(chosenAnswer, correct, userID);
+        })
+    });
 
+    if (chosenAnswer === correct) {
+        console.log('Correct Answer chosen.');
+    } else {
+        console.log('Wrong Answer.');
+    }
     console.log('MCQuestions have ended.');
 };
 
